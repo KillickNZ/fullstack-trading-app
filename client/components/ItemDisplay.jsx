@@ -1,5 +1,5 @@
 import React from 'react'
-import CurrencyCard from './CurrencyCard'
+import ItemCard from './ItemCard'
 
 function ItemDisplay(props) {
 
@@ -13,7 +13,7 @@ function ItemDisplay(props) {
             </div>
             {props.data.map((card, i) => {
                 return (
-                    <CurrencyCard key={i} activeCoin={props.activeCoin} clickHandler={props.clickHandler} coin={card} />
+                    <ItemCard key={i} activeCoin={props.activeCoin} clickHandler={props.clickHandler} coin={card} />
                 )
             })}
         </div>

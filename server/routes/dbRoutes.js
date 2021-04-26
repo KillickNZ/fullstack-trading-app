@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const db = require('../db/db')
+const db = require('../db/connection')
 
 router.get('/:username/:password', (req, res) => {
   console.log('REQ.body ', req.params)

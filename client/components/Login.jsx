@@ -1,5 +1,5 @@
 import React from 'react'
-import { getUser } from '../api'
+import { getUser } from '../apis/mainApi'
 
 function Login (props) {
   const handleChange = (e) => {

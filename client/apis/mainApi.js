@@ -3,33 +3,33 @@ import request from 'superagent'
 // import unirest from 'unirest'
 // const unirest = require('unirest')
 
-const baseURL = '/api/v1/coins'
+const baseURL = '/api/v1/ExternalApiRoutes'
 
 export const getAllCoins = () => {
-  return request.get('/api/v1/coins').then((response) => response.body)
+  return request.get('/api/v1/ExternalApiRoutes').then((response) => response.body)
 }
 
 export const get30CoinsCap = () => {
   return request
-    .get('/api/v1/coins/top30cap')
+    .get('/api/v1/ExternalApiRoutes/top30cap')
     .then((response) => response.body)
 }
 
 export const get30CoinsPrc = () => {
   return request
-    .get('/api/v1/coins/top30prc')
+    .get('/api/v1/ExternalApiRoutes/top30prc')
     .then((response) => response.body)
 }
 
 export const get30CoinsRat = () => {
   return request
-    .get('/api/v1/coins/top30rat')
+    .get('/api/v1/ExternalApiRoutes/top30rat')
     .then((response) => response.body)
 }
 
 export const getMarketData = (activeCoin) => {
   return request
-    .get('/api/v1/coins/getMarket/' + activeCoin)
+    .get('/api/v1/ExternalApiRoutes/getMarket/' + activeCoin)
     .then((response) => response.body)
 }
 

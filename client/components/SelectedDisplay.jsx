@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getMarketData } from '../api'
+import { getMarketData } from '../apis/mainApi'
 import { Line } from 'react-chartjs-2';
 
 
