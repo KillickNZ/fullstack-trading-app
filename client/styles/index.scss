@@ -1,6 +1,271 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
 
-html, 
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&family=Zen+Dots&display=swap');
+
+:root {
+  --color-dark-one: #2b2e4a;
+  --color-dark-two: #53354a;
+  --color-accent-one: #e84545;
+  --color-accent-two: #903749;
+  --border-radius: 10px;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Ubuntu Mono', monospace;
+  background-color: var(--color-dark-one);
+  overflow-x: hidden;
+  border-bottom: 10px solid transparent;
+  -moz-border-image: -moz-linear-gradient(top, var(--color-accent-one) 0%, #c31432 100%);
+  -webkit-border-image: -webkit-linear-gradient(top, var(--color-accent-one) 0%, #c31432 100%);
+  border-image: linear-gradient(to left, var(--color-accent-one) 0%, #c31432 100%);
+  border-image-slice: 1;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+ 
+}
+
+.header {
+  border-bottom: 1px solid transparent;
+  -moz-border-image: -moz-linear-gradient(top, var(--color-accent-one) 0%, #c31432 100%);
+  -webkit-border-image: -webkit-linear-gradient(top, var(--color-accent-one) 0%, #c31432 100%);
+  border-image: linear-gradient(to left, var(--color-accent-one) 0%, #c31432 100%);
+  border-image-slice: 1;
+  border-top: 20px solid transparent;
+  -moz-border-image: -moz-linear-gradient(top, var(--color-accent-one) 0%, #c31432 100%);
+  -webkit-border-image: -webkit-linear-gradient(top, var(--color-accent-one) 0%, #c31432 100%);
+  border-image: linear-gradient(to left, var(--color-accent-one) 0%, #c31432 100%);
+  border-image-slice: 1;
+
+  min-height: 93px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-name {
+  margin: 0px 33px;
+  color: var(--color-accent-one);
+} 
+
+.login-input {
+  border: none;
+  border-bottom: 2px solid var(--color-dark-two);
+  background-color: var(--color-dark-one);
+}
+
+.login-input:focus {
+  background-color: var(--color-accent-two);
+  border: none;
+  outline: 0 !IMPORTANT;
+}
+
+.input-label {
+  font-size: 1.5rem;
+  color: var(--color-accent-one);
+}
+.button-one{
+  margin: 33px;
+  border: 3px var(--color-accent-two) solid;
+  border-radius: 1px;
+  background-color: var(--color-dark-two);
+}
+
+.chart {
+  padding: 30px;
+  background-color: var(--color-dark-two);
+  border-radius: var(--border-radius);
+  max-width: 100%;
+}
+
+.wrapper {
+  /* margin: 12px;
+  margin-top: 52px; */
+  max-width: 100vw;
+  /* padding-right: 10px;
+  padding-left: 10px; */
+}
+
+.hero-heading {
+  text-align: center;
+  color: var(--color-accent-one);
+  font-size: 3rem;
+}
+
+.form-container {
+  margin: 0px 30px;
+}
+
+
+.container {
+  width: 100%;
+}
+
+
+.content-container {
+  display: flex;
+  overflow: hidden;
+  height: 90vh;
+  position: relative;
+  width: 100%;
+  backface-visibility: hidden;
+  will-change: overflow;
+}
+
+.majorColumn {
+  /* margin: 8px; */
+  overflow: none;
+  width: 50vw;
+  height: auto;
+  padding: .5rem;
+  margin: 0px 18px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  flex: 3;
+}
+
+.minorColumn {
+  direction: rtl;
+  margin-right: 0px;
+  padding: 30px;
+  overflow-y: scroll;
+  height: auto;
+  flex: 1;
+  min-width: 285px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-dark-two);
+  /* border-radius: var(--border-radius); */
+  -ms-overflow-style: none;  
+  scrollbar-width: none;
+}
+
+.minorColumn::-webkit-scrollbar {
+  display: none;
+}
+
+.minorColumn::-webkit-scrollbar-track {
+  background: var(--color-accent-two);
+}
+
+.minorColumn::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.minorColumn::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.button {
+  top: 0px;
+  left: 0px;
+  position: relative;
+  border: none;
+  border-radius: 5px;
+  background-color:var(--color-accent-two);
+  color: white;
+  padding: 4px;
+  margin: 4px;
+  font-family: 'Ubuntu Mono', monospace;
+  box-shadow: 1px 1px 0.6s var(--color-dark-two);
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+}
+
+.button:hover {
+  background-color: var(--color-accent-two);
+  left: 1px;
+  top: 1px;
+}
+
+.currencyCard {
+  font-size: 11pt;
+  direction: ltr;
+  position: relative;
+  left: 0;
+  top: 0;
+  border: 1px solid var(--color-dark-two);
+  border-radius: 5px;
+  padding: 4px;
+  margin: 8px;
+  width: 250px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 1px 1px 7px var(--color-dark-two);
+  cursor: pointer;
+  transition: all 0.4s ease-out;
+  background-color: var(--color-dark-one);
+}
+
+.optionsContainer {
+  direction: ltr;
+}
+
+.currencyCard--selected {
+  background-color: var(--color-accent-two)
+}
+
+.currencyCard:hover {
+  left: 2px;
+  top: 2px;
+  box-shadow: 2px 2px 7px var(--color-dark-two);
+}
+
+.currencyCard--container {
+  border: none;
+  padding: 4px;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.currencyCard--containerVert {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0px;
+}
+
+.currencyCard--title {
+  font-weight: bold;
+  padding: 0px;
+  margin: 0px;
+}
+
+.currencyCard--info {
+  padding: 0px;
+  margin: 0px;
+}
+
+.currencyCard--code {
+  padding: 0px;
+  margin: 0px;
+  color: var(--color-accent-two)
+}
+
+.currencyCard--img {
+  width: 25%;
+  height: auto
+}
+
+.chart {
+  width: auto;
+  height: auto;
+  min-width: 350px;
+  min-height: 262px;
 }
