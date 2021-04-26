@@ -1,5 +1,5 @@
 {
-  "name": "boilerplate-fullstack",
+  "name": "Sebs-fullstack-app",
   "version": "2.0.0",
   "main": "server/index.js",
   "license": "MIT",
@@ -43,6 +43,7 @@
     "knex": "^0.21.12",
     "pg": "^8.5.1",
     "react-chartjs-2": "^3.0.2",
+    "react-helmet": "^6.1.0",
     "superagent": "^6.1.0"
   },
   "devDependencies": {

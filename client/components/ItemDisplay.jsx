@@ -1,6 +1,8 @@
 import React from 'react'
 import ItemCard from './ItemCard'
 
+import { connect } from 'react-redux'
+
 function ItemDisplay(props) {
 
     return (
@@ -20,4 +22,11 @@ function ItemDisplay(props) {
     )
 }
 
-export default ItemDisplay
+
+const mapStateToProps = (globalState) => {
+    return {
+
+    }
+  }  
+
+export default connect(mapStateToProps)(ItemDisplay)

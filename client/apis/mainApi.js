@@ -46,3 +46,10 @@ export function getUser (username, password) {
   )
 }
 
+// =========== Alpha Vantage calls ============= //
+
+export const getStockData = (stockSymbol) => {
+  return request
+    .get('/api/v1/alphaVantageRoutes/getStock/'+stockSymbol)
+    .then((response) => {return response.body})
+}

@@ -9,6 +9,7 @@ import Header from './Header'
 import MajorColumn from './MajorColumn'
 import ItemDisplay from './ItemDisplay'
 import Widgets from './Widgets'
+import { Helmet } from 'react-helmet'
 
 
 function App() {
@@ -62,6 +63,9 @@ function App() {
 
   return (
     <div className="outerWrapper">
+      <Helmet>
+        <title>SGC</title>
+      </Helmet>
       <Header setLoggedIn={setLoggedIn} user={user} setUser={setUser} />
       <div className="wrapper">
         <div className='container'>
