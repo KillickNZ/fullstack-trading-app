@@ -11,7 +11,7 @@ function ItemDisplay(props) {
     function renderCards(props){
         return  props.data.map((card, i) => {
         return (
-            <ItemCard key={i} activeCoin={props.activeCoin} clickHandler={props.clickHandler} coin={card} />
+            <ItemCard key={i} activeCoin={props.activeCoin} coin={card} />
             )
         })       
     }

@@ -5,7 +5,8 @@ export const SET_ACTIVE_TYPE = 'SET_ACTIVE_TYPE'
 export const SET_ACTIVE_STONKS_ITEM = 'SET_ACTIVE_STONKS_ITEM'
 
 
-export function setCurrentCrypto (item) {
+export function setCurrentCryptyo (item) {
+  console.log('htting stcry')
   return {
     type: SET_ACTIVE_CRYPTYO_ITEM,
     item: item

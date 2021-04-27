@@ -69,7 +69,7 @@ function App() {
       <div className="wrapper">
         <div className='container'>
           <div className="content-container">
-            {data && <ItemDisplay activeCoin={activeCoin} filterChanger={filterChanger} clickHandler={clickHandler} data={data} />}
+            {data && <ItemDisplay activeCoin={activeCoin} filterChanger={filterChanger} data={data} />}
             {/* <SelectedDisplay activeCoin={activeCoin} /> */}
             <MajorColumn activeCoin={activeCoin} />
             <Widgets />

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
+import { setCurrentCryptyo } from '../actions/stockActions'
+
 const currencyCard = (props) => {
   const [select, setSelect] = useState('')
 
@@ -26,11 +28,13 @@ const currencyCard = (props) => {
     // </div>
   }
 
-
-
+// console.log('Active crypto', props.activeCryptyo);
+// console.log('props.coin.id: ', props.coin.name);
+console.log(props)
 
   return (
-    <div className={`currencyCard ${select}`} onClick={() => props.clickHandler(props.coin.id)}>
+    // <div className={`currencyCard ${select}`} onClick={() => props.clickHandler(props.coin.id)}>
+    <div className={`currencyCard ${select}`} onClick={() => props.dispatch(setCurrentCryptyo(props.coin.name))}>
       <div className="currencyCard--container">
         <p className="currencyCard--title">{props.coin.name}</p>
         <p className="currencyCard--code">{props.coin.code}</p>

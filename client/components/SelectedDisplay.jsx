@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+
 import { getMarketData } from '../apis/mainApi'
 import { Line } from 'react-chartjs-2';
 
@@ -46,7 +48,7 @@ function SelectedDisplay(props) {
         <>
             { coinData &&
                 <div className='major-feed-container'>  
-                    <h1 className="hero-heading">{capitalize(props.activeCoin)}</h1>
+                    <h1 className="hero-heading">{capitalize(props.activeCryptyo)}</h1>
                     <div className="chart">{buildChart(coinData)}</div>
                 </div>
             }
@@ -56,4 +58,11 @@ function SelectedDisplay(props) {
 }
 
 
-export default SelectedDisplay
+const mapStateToProps = (globalState) => {
+    return {
+      category: globalState.category,
+      activeCryptyo: globalState.activeCryptyo
+    }
+  }
+
+export default connect(mapStateToProps)(SelectedDisplay)
