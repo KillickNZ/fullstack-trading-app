@@ -57,7 +57,8 @@ function ItemDisplay(props) {
 const mapStateToProps = (globalState) => {
     return {
         category: globalState.category,
-        activeCryptyo: globalState.activeCryptyo
+        activeCryptyo: globalState.activeCryptyo,
+        activeStonks: globalState.activeStonks
     }
 }
 
