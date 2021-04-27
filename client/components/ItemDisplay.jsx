@@ -25,18 +25,10 @@ function ItemDisplay(props) {
     return (
         <div className="minorColumn">
             <div className="optionsContainer">
-                <div className='toggle-container'>
-                    <ul className='display-nav'>
-                        <li><button type="button" className="button" onClick={() => props.dispatch(setType('stonks'))}>Stonks</button></li>
-                        <li><button type="button" className="button" onClick={() => props.dispatch(setType('cryptyo'))}>CrypYos</button></li>
-                    </ul>
-                </div>
-                <div>
-                    {/* <span className="options__text">Sort by</span> */}
-                    <button className="button" onClick={() => props.filterChanger(0)}>Market Cap</button>
-                    <button className="button" onClick={() => props.filterChanger(2)}>Rating</button>
-                </div>
-
+                <button type="button" className="button" onClick={() => props.dispatch(setType('stonks'))}>Stonks</button>
+                <button type="button" className="button" onClick={() => props.dispatch(setType('cryptyo'))}>CrypYos</button>
+                <button className="button" onClick={() => props.filterChanger(0)}>Market Cap</button>
+                <button className="button" onClick={() => props.filterChanger(2)}>Rating</button>
             </div>
             {(props.category == 'cryptyo') ? renderCards(props) : renderStonks(props)}
 

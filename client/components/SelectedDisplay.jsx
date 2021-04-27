@@ -45,10 +45,10 @@ function SelectedDisplay(props) {
     return (
         <>
             { coinData &&
-                <>  
+                <div className='major-feed-container'>  
                     <h1 className="hero-heading">{capitalize(props.activeCoin)}</h1>
                     <div className="chart">{buildChart(coinData)}</div>
-                </>
+                </div>
             }
         </>
     )
