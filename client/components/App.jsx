@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 // import { fetchFruits } from '../actions'
 import React, { useState, useEffect } from 'react'
 
-import { get30CoinsCap, get30CoinsPrc, get30CoinsRat } from '../apis/mainApi'
+import { get30CoinsCap, get30CoinsPrc, get30CoinsRat, getStockData } from '../apis/mainApi'
 import { prepareCardArray } from '../utils'
 import Header from './Header'
 import MajorColumn from './MajorColumn'
@@ -60,6 +60,7 @@ function App() {
         })
     }
   }, [coinFilter])
+  console.log(getStockData('TSLA'));
 
   return (
     <div className="outerWrapper">
