@@ -45,7 +45,7 @@ router.get('/top30rat', (req, res) => {
 
 router.get('/getMarket/:id', (req, res) => {
   const id = req.params.id
-
+  console.log('ID', id)
   // return request.get(`${apiURL}/coins/${id}/market_chart/range?vs_currency=NZD&from=1613431243&to=1618096843`)
   return request
     .get(

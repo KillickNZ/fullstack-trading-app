@@ -28,7 +28,6 @@ function App() {
   }
 
   useEffect(() => {
-    console.log(coinFilter)
     if (coinFilter === 0) {
       get30CoinsCap()
         .then(res => {
@@ -60,7 +59,6 @@ function App() {
         })
     }
   }, [coinFilter])
-  console.log(getStockData('TSLA'));
 
   return (
     <div className="outerWrapper">
@@ -85,7 +83,7 @@ function App() {
 
 const mapStateToProps = (globalState) => {
   return {
-    fruits: globalState.fruits
+    activeItem: globalState.activeItem
   }
 }
 

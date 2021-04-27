@@ -50,7 +50,15 @@ export function getUser (username, password) {
 
 export const getStockData = (stockSymbol) => {
   return request
-    .get('/api/v1/alphaVantageRoutes/getStock/'+stockSymbol)
+    .get('/api/v1/alphaVantageRoutes/getStockTimeSeries/'+stockSymbol)
+    .then((response) => {
+      return response.body
+    })
+}
+
+export const getStockOverview = (stockSymbol) => {
+  return request
+    .get('/api/v1/alphaVantageRoutes/getStockOverView/'+stockSymbol)
     .then((response) => {
       console.log(response.body)
       return response.body
