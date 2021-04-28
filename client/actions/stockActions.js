@@ -5,6 +5,7 @@ export const SET_ACTIVE_TYPE = 'SET_ACTIVE_TYPE'
 export const SET_ACTIVE_STONKS_ITEM = 'SET_ACTIVE_STONKS_ITEM'
 export const SET_USER = 'SET_USER'
 export const SET_LOGGED_IN = 'SET_LOGGED_IN'
+export const SET_LOADED_API = 'SET_LOADED_API'
 
 export function setCurrentCryptyo (item) {
   return {
@@ -37,6 +38,13 @@ export function setUser (user) {
 export function setLoggedIn(bool) {
   return {
     type: SET_LOGGED_IN,
+    bool: bool
+  }
+}
+
+export function loadedApiData (bool) {
+  return {
+    type: SET_LOADED_API,
     bool: bool
   }
 }

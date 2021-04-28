@@ -1,6 +1,4 @@
 import { connect } from 'react-redux'
-
-// import { fetchFruits } from '../actions'
 import React, { useState, useEffect } from 'react'
 
 import { get30CoinsCap, get30CoinsPrc, get30CoinsRat, getStockData } from '../apis/mainApi'
@@ -10,9 +8,11 @@ import MajorColumn from './MajorColumn'
 import ItemDisplay from './ItemDisplay'
 import Widgets from './Widgets'
 import { Helmet } from 'react-helmet'
+import loadedApiData from '../actions/stockActions'
 
 
-function App() {
+
+function App(props) {
   const [data, setData] = useState(null)
   const [coinFilter, setCoinFilter] = useState(0)
   const [loggedin, setLoggedIn] = useState(false)
@@ -27,6 +27,7 @@ function App() {
       get30CoinsCap()
         .then(res => {
           setData(prepareCardArray(res))
+          props.dispatch(loadedApiData('true'))
           return null
         })
         .catch((err) => {
@@ -37,6 +38,7 @@ function App() {
       get30CoinsPrc()
         .then(res => {
           setData(prepareCardArray(res))
+          props.dispatch(loadedApiData('true'))
           return null
         })
         .catch((err) => {
@@ -47,6 +49,7 @@ function App() {
       get30CoinsRat()
         .then(res => {
           setData(prepareCardArray(res))
+          props.dispatch(loadedApiData('true'))
           return null
         })
         .catch((err) => {
@@ -55,12 +58,19 @@ function App() {
     }
   }, [coinFilter])
 
+  const apploading = () => {
+    <div className='loading-display'>
+    </div>
+  }
+
   return (
     <div className="outerWrapper">
       <Helmet>
         <title>SGC</title>
       </Helmet>
       <Header setLoggedIn={setLoggedIn} user={user} setUser={setUser} />
+    { 
+    props.loadedApi ?
       <div className="wrapper">
         <div className='container'>
           <div className="content-container">
@@ -71,6 +81,8 @@ function App() {
           </div>
         </div>
       </div>
+      : apploading()
+      }
     </div>
   )
 }
@@ -78,7 +90,8 @@ function App() {
 
 const mapStateToProps = (globalState) => {
   return {
-    activeItem: globalState.activeItem
+    activeItem: globalState.activeItem,
+    loadedApi: globalState.loadedApi
   }
 }
 

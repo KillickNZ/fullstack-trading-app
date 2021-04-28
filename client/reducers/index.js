@@ -5,6 +5,7 @@ import activeCryptyo from './activeCryptyo'
 import activeStonks from './activeStonks'
 import activeUser from './user'
 import loggedIn from './loggedIn'
+import loadedApi from './loadedApi'
 
 
 export default combineReducers({
@@ -12,5 +13,6 @@ export default combineReducers({
   activeCryptyo,
   activeStonks,
   activeUser,
-  loggedIn
+  loggedIn,
+  loadedApi
 })
