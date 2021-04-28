@@ -13,15 +13,14 @@ const getUsers = (db = connection) => {
   // )
 };
 
-const getUser = (id, password, db = connection) => {
+const getUser = (username, password, db = connection) => {
   console.log('DB')
   return db('users')
     .select()
     .where({
-      id: id,
-      password: password
+      username: username,
+      hash: password
     })
-    .then((res) => console.log('DB result: ' + res))
     .catch((err) => {
       console.log(err)
     })

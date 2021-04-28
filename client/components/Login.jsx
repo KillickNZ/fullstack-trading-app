@@ -1,5 +1,8 @@
 import React from 'react'
 import { getUser } from '../apis/mainApi'
+import { connect } from 'react-redux'
+
+import { setUser, setLoggedIn } from '../actions/stockActions'
 
 function Login (props) {
   const handleChange = (e) => {
@@ -15,17 +18,16 @@ function Login (props) {
   }
 
   const handleSubmit = (e) => {
-    // console.log('Submitting to db' + props.user)
     e.preventDefault()
-    return getUser(props.user.username, props.user.password).then((res) => {
-      // props.setUser(res.body)
-      // props.setLoggedIn(true)
-      // console.log('User data' + res)
-      return res
+    return getUser(props.user.username, props.user.password)
+      .then((res) => {
+        {res && props.dispatch(setUser(res))}
+        {res ? props.dispatch(setLoggedIn('true')): props.dispatch(setLoggedIn('false'))}
+        return null
     })
   }
+  console.log('props data:', props.activeUser, props.loggedIn);
 
-  console.log('Props.user: ', props.user)
   return (
     <div className="form-container">
       <form
@@ -59,4 +61,11 @@ function Login (props) {
   )
 }
 
-export default Login
+const mapStateToProps = (globalState) => {
+  return {
+    activeUser: globalState.activeUser,
+    loggedIn: globalState.loggedIn
+  }
+}
+
+export default connect(mapStateToProps)(Login)

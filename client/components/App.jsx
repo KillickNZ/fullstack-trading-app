@@ -17,11 +17,6 @@ function App() {
   const [coinFilter, setCoinFilter] = useState(0)
   const [loggedin, setLoggedIn] = useState(false)
   const [user, setUser] = useState(null)
-  const [activeCoin, setActiveCoin] = useState('bitcoin')
-
-  const clickHandler = (id) => {
-    setActiveCoin(id)
-  }
 
   const filterChanger = (num) => {
     setCoinFilter(num)
@@ -69,9 +64,9 @@ function App() {
       <div className="wrapper">
         <div className='container'>
           <div className="content-container">
-            {data && <ItemDisplay activeCoin={activeCoin} filterChanger={filterChanger} data={data} />}
+            {data && <ItemDisplay  filterChanger={filterChanger} data={data} />}
             {/* <SelectedDisplay activeCoin={activeCoin} /> */}
-            <MajorColumn activeCoin={activeCoin} />
+            <MajorColumn />
             <Widgets />
           </div>
         </div>

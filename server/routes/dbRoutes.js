@@ -1,13 +1,14 @@
 const express = require('express')
 const router = express.Router()
 
-const db = require('../db/connection')
+const db = require('../db/users')
 
 router.get('/:username/:password', (req, res) => {
   console.log('REQ.body ', req.params)
   return db.getUser(req.params.username, req.params.password)
     .then(user => {
-      return res.json(user)
+      console.log('USER', user)
+      return res.json(user[0].username)
     })
     .catch(err => {
       console.log(err.message)

@@ -4,6 +4,7 @@ const initialState = 'dogecoin'
 
 const reducer = (state = initialState, action) => {
 //   console.log(action.type, ' ============= ', action.category)
+  // console.log('ACTION', action)
   switch (action.type) {
     case SET_ACTIVE_CRYPTYO_ITEM:
         return  action.item

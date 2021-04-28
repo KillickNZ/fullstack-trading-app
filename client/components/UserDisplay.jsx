@@ -1,10 +1,19 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-function UserDisplay() {
+import { capitalize } from '../utils'
+
+function UserDisplay(props) {
     return (
         <div>
-            <img/>
-            <h3>Name here</h3>
+            <img/> 
+            <h3>
+                {props.activeUser ? 
+                capitalize(props.activeUser)
+                :'User not logged in'
+                }
+            </h3>
+            
             <ul>
                 <li>
                     stock 1
@@ -17,4 +26,10 @@ function UserDisplay() {
     )
 }
 
-export default UserDisplay
+const mapStateToProps = (globalState) => {
+    return {
+        activeUser: globalState.activeUser
+    }
+}
+
+export default connect(mapStateToProps)(UserDisplay)

@@ -3,10 +3,10 @@ import api from '../apis/mainApi'
 export const SET_ACTIVE_CRYPTYO_ITEM = 'SET_ACTIVE_CRYPTYO_ITEM'
 export const SET_ACTIVE_TYPE = 'SET_ACTIVE_TYPE'
 export const SET_ACTIVE_STONKS_ITEM = 'SET_ACTIVE_STONKS_ITEM'
-
+export const SET_USER = 'SET_USER'
+export const SET_LOGGED_IN = 'SET_LOGGED_IN'
 
 export function setCurrentCryptyo (item) {
-  console.log('htting stcry')
   return {
     type: SET_ACTIVE_CRYPTYO_ITEM,
     item: item
@@ -24,6 +24,20 @@ export function setType (type) {
   return {
     type: SET_ACTIVE_TYPE,
     category: type
+  }
+}
+
+export function setUser (user) {
+  return {
+    type: SET_USER,
+    activeUser: user
+  }
+}
+
+export function setLoggedIn(bool) {
+  return {
+    type: SET_LOGGED_IN,
+    bool: bool
   }
 }
 

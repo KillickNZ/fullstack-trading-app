@@ -20,7 +20,7 @@ function ItemDisplay(props) {
         return <h1>Hi</h1>
     }
 
-    console.log('active cry:' , props.activeCryptyo);
+    // console.log('active cry:' , props.activeCryptyo);
 
     return (
         <div className="minorColumn">

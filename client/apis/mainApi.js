@@ -33,14 +33,17 @@ export const getMarketData = (activeCoin) => {
     .then((response) => response.body)
 }
 
+// =========== DB route calls ============= //
+
 export function getUser (username, password) {
   console.log('hitting internal api', username, password)
+  console.log('/api/v1/dbRoutes/' + username + '/' + password)
   return (
     request
       .get('/api/v1/dbRoutes/' + username + '/' + password)
       // .send({username, password})
       .then((res) => {
-        console.log('API res.body ' + res.body)
+        console.log('API res.body ', res.body)
         return res.body
       })
   )

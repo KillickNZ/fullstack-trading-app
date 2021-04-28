@@ -30,7 +30,7 @@ const currencyCard = (props) => {
 
 // console.log('Active crypto', props.activeCryptyo);
 // console.log('props.coin.id: ', props.coin.name);
-console.log(props)
+// console.log(props)
 
   return (
     // <div className={`currencyCard ${select}`} onClick={() => props.clickHandler(props.coin.id)}>

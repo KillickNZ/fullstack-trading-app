@@ -22,9 +22,14 @@ const getMonths = (month) => {
   let monthOn = months.indexOf(month)
 }
 
+function capitalize (string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
 module.exports = {
   prepareCardData,
   prepareCardArray,
   months,
-  getMonths
+  getMonths,
+  capitalize 
 }

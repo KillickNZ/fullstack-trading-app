@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { getMarketData } from '../apis/mainApi'
 import { Line } from 'react-chartjs-2';
+import { capitalize } from '../utils'
 
 
 function SelectedDisplay(props) {
@@ -10,11 +11,11 @@ function SelectedDisplay(props) {
     const [coinData, setCoinData] = useState(null)
 
     useEffect(() => {
-        getMarketData(props.activeCoin)
+        getMarketData(props.activeCryptyo)
             .then(res => {
                 return setCoinData(res)
             })
-    }, [props.activeCoin])
+    }, [props.activeCryptyo])
 
     function buildChart(displayCoin) {
 
@@ -39,11 +40,11 @@ function SelectedDisplay(props) {
         return <Line data={data} labels={data.labels} config={config} />
     }
 
-    function capitalize (string) {
-        return string.charAt(0).toUpperCase() + string.slice(1)
-    }
+    // function capitalize (string) {
+    //     return string.charAt(0).toUpperCase() + string.slice(1)
+    // }
 
-    console.log(coinData);
+    // console.log(coinData);
     return (
         <>
             { coinData &&
