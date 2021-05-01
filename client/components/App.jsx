@@ -8,7 +8,9 @@ import MajorColumn from './MajorColumn'
 import ItemDisplay from './ItemDisplay'
 import Widgets from './Widgets'
 import { Helmet } from 'react-helmet'
-import loadedApiData from '../actions/stockActions'
+import { loadedApiData } from '../actions/stockActions'
+// import LoadingGif from './LoadingGif'
+// import LoadingGif from '../styles/svgs/loading.svg'
 
 
 
@@ -26,20 +28,19 @@ function App(props) {
     if (coinFilter === 0) {
       get30CoinsCap()
         .then(res => {
-          setData(prepareCardArray(res))
-          props.dispatch(loadedApiData('true'))
-          return null
+          props.dispatch(loadedApiData(true))
+          return setData(prepareCardArray(res))
         })
         .catch((err) => {
-          console.error(err.message)
+          return console.error(err.message)
         })
+        
     } else
     if (coinFilter === 1) {
       get30CoinsPrc()
         .then(res => {
-          setData(prepareCardArray(res))
-          props.dispatch(loadedApiData('true'))
-          return null
+          props.dispatch(loadedApiData(true))
+          return setData(prepareCardArray(res))
         })
         .catch((err) => {
           console.error(err.message)
@@ -48,19 +49,23 @@ function App(props) {
     if (coinFilter === 2) {
       get30CoinsRat()
         .then(res => {
-          setData(prepareCardArray(res))
-          props.dispatch(loadedApiData('true'))
-          return null
+          props.dispatch(loadedApiData(true))
+          
+          return setData(prepareCardArray(res))
         })
         .catch((err) => {
           console.error(err.message)
         })
     }
+    // props.dispatch(loadedApiData(true))
+    // console.log(props);
   }, [coinFilter])
 
   const apploading = () => {
-    <div className='loading-display'>
-    </div>
+    return  <div className='loading-display'>
+        <h3 id="loading">One moment...</h3>
+      </div>
+  
   }
 
   return (
@@ -69,6 +74,7 @@ function App(props) {
         <title>SGC</title>
       </Helmet>
       <Header setLoggedIn={setLoggedIn} user={user} setUser={setUser} />
+
     { 
     props.loadedApi ?
       <div className="wrapper">
@@ -80,9 +86,9 @@ function App(props) {
             <Widgets />
           </div>
         </div>
-      </div>
-      : apploading()
-      }
+      </div> 
+      : 
+      apploading() }
     </div>
   )
 }

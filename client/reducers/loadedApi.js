@@ -1,9 +1,9 @@
 import { SET_LOADED_API } from '../actions/stockActions'
 
-const initialState = null
+const initialState = false
 
 const reducer = (state = initialState, action) => {
-  // console.log(action.type, ' ============= ', action.category)
+  // console.log(action.type, ' ============= ', action.bool)
   switch (action.type) {
     case SET_LOADED_API:
         return  action.bool

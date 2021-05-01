@@ -43,6 +43,7 @@ export function setLoggedIn(bool) {
 }
 
 export function loadedApiData (bool) {
+  console.log("Actioning")
   return {
     type: SET_LOADED_API,
     bool: bool
