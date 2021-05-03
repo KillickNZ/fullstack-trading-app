@@ -10,6 +10,10 @@ function Login (props) {
   const [loginUserName, setLoginUserName] = useState("")
   const [loginPassword, setLoginPassword] = useState("")
 
+  // ========= Login display =========== //
+  const [loginClicked, setLoginClicked] = useState(false)
+  const [regClicked, setRegClicked] = useState(false)
+
   const handleChange = (e) => {
     e.preventDefault()
     const user = {
@@ -31,15 +35,9 @@ function Login (props) {
   console.log('props data:', props.activeUser, props.loggedIn);
 
   const renderLogin = () => {
-    return {
-      
-    }
-  }
-
-  return (
-    <div className="form-container">
-      {/* ========= Login =========== */}
-      <form onSubmit={(e) => { handleSubmit(e) }}>
+    console.log('rendereing login')
+    return ( 
+    <form onSubmit={(e) => { handleSubmit(e) }}>
         <label htmlFor='username' className='input-label'>Username:
           <input
             className='login-input'
@@ -60,9 +58,12 @@ function Login (props) {
         </label>
         <button className='button-one' type='submit'>Login</button>
       </form>
+    )
+  }
 
-      {/* ========= Register =========== */}
-      <form onSubmit={(e) => { handleSubmit(e) }}>
+  const renderRegister = () => {
+    return (
+       <form onSubmit={(e) => { handleSubmit(e) }}>
         <label htmlFor='username' className='input-label'>Username:
           <input
             className='login-input'
@@ -83,6 +84,13 @@ function Login (props) {
         </label>
         <button className='button-one' type='submit'>Register</button>
       </form>
+    )
+  }
+
+  return (
+    <div className="form-container">
+      { loginClicked ? renderLogin() : <button className='button-one' type='button' onClick={ () => setLoginClicked(!loginClicked) }>Login</button> }
+      { regClicked ? renderRegister() : <button className='button-one' type='button' onClick={ () => setRegClicked(!regClicked) }>Register</button> }
     </div>
   )
 }

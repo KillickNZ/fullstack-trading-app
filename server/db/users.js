@@ -4,17 +4,30 @@ const connection = require('./connection')
 // =========== BLOG-POST DB FUNCTIONS =========== //
 
 const getUsers = (db = connection) => {
-  // return (
-  //     db('Posts')
-  //     .select()
-  //     .catch((err) => {
-  //         console.log(err)
-  //     })
-  // )
+  return (
+      db('users')
+      .select()
+      .catch((err) => {
+          console.log(err)
+      })
+  )
+};
+
+const addUsers = (username, password, db = connection) => {
+  return (
+      db('users')
+      .insert({
+        username: username,
+        hash: password
+      })
+      .catch((err) => {
+          console.log(err)
+      })
+  )
 };
 
 const getUser = (username, password, db = connection) => {
-  console.log('DB')
+  // console.log('DB')
   return db('users')
     .select()
     .where({
@@ -25,6 +38,40 @@ const getUser = (username, password, db = connection) => {
       console.log(err)
     })
 }
+
+const deleteUser = (username, password,  db = connection) => {
+  return db('users')
+  .where({
+    username: username,
+    hash: password
+  })
+  .del()
+  .catch((err) => {
+      console.log(err)
+  })
+}
+
+const getWatchlist = (username,db = connection) => {
+  return (
+      db('users')
+      .select('watchlist')
+      .where('username', username)
+      .catch((err) => {
+          console.log(err)
+      })
+  )
+};
+
+const updateWatchlist = (username, watchlist, db = connection) => {
+  return (
+      db('users')
+      .where('username', username)
+      .update({ 'watchlist': watchlist })
+      .catch((err) => {
+          console.log(err)
+      })
+  )
+};
 
 const addStocks = (obj, db = connection) => {
   // return (
@@ -51,17 +98,14 @@ const updateStocks = (id, title, paras, db = connection) => {
   // )
 }
 
-const deletePost = (id, db = connection) => {
-  // db('Posts')
-  // .where("id", id)
-  // .del()
-  // .catch((err) => {
-  //     console.log(err)
-  // })
-}
 
 // =========== COMMENT DB FUNCTIONS =========== //
 
 module.exports = {
-  getUser
+  getUser,
+  getUsers,
+  addUsers,
+  deleteUser,
+  getWatchlist,
+  updateWatchlist
 }
