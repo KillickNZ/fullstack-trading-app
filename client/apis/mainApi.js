@@ -37,6 +37,47 @@ export const getMarketData = (activeCoin) => {
 
 export function getUser (username, password) {
   console.log('hitting internal api', username, password)
+  console.log('/api/v1/dbRoutes/' + username)
+  return (
+    request
+      .get('/api/v1/dbRoutes/' + username + '/' + password)
+      .then((res) => {
+        console.log('API res.body ', res.body)
+        return res.body
+      })
+  )
+}
+
+export function getUsers (username, password) {
+  // console.log('hitting internal api', username, password)
+  // console.log('/api/v1/dbRoutes/' + username + '/' + password)
+  // return (
+  //   request
+  //     .get('/api/v1/dbRoutes/' + username + '/' + password)
+  //     // .send({username, password})
+  //     .then((res) => {
+  //       console.log('API res.body ', res.body)
+  //       return res.body
+  //     })
+  // )
+}
+
+export function addUser (username, password) {
+  // console.log('hitting internal api', username, password)
+  // console.log('/api/v1/dbRoutes/' + username + '/' + password)
+  // return (
+  //   request
+  //     .get('/api/v1/dbRoutes/' + username + '/' + password)
+  //     // .send({username, password})
+  //     .then((res) => {
+  //       console.log('API res.body ', res.body)
+  //       return res.body
+  //     })
+  // )
+}
+
+export function deleteUser (username, password) {
+  console.log('hitting internal api', username, password)
   console.log('/api/v1/dbRoutes/' + username + '/' + password)
   return (
     request
@@ -48,6 +89,35 @@ export function getUser (username, password) {
       })
   )
 }
+
+export function getUserWatchlist (username, password) {
+  console.log('hitting internal api', username, password)
+  console.log('/api/v1/dbRoutes/watchlist/' + username )
+  return (
+    request
+      .get('/api/v1/dbRoutes/watchlist/' + username)
+      // .send({username, password})
+      .then((res) => {
+        console.log('API res.body ', res.body)
+        return res.body
+      })
+  )
+}
+
+export function updateUserWatchlist (watchlist, username) {
+  console.log('hitting internal api', watchlist username)
+  console.log('/api/v1/dbRoutes/watchlist' + watchlist + '/' + username)
+  return (
+    request
+      .get('/api/v1/dbRoutes/watchlist' + watchlist + '/' + username)
+      .then((res) => {
+        console.log('API res.body ', res.body)
+        return res.body
+      })
+  )
+}
+
+
 
 // =========== Alpha Vantage calls ============= //
 

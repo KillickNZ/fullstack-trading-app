@@ -3,10 +3,43 @@ const router = express.Router()
 
 const db = require('../db/users')
 
+
+// done
+router.get('/watchlist/:username', (req, res) => {
+  console.log("Routes - Getting users stock watchlist", req.params.username)
+  return db.getWatchlist(req.params.username)
+    .then(wl => {
+      console.log('USER watchlist', wl)
+      return res.json(wl)
+    })
+    .catch(err => {
+      console.log(err.message)
+      return res.status(500).send('500 error :(')
+    })
+  })
+
+  // done
+  router.patch('/watchlist/:watchlist/:username', (req, res) => {
+    console.log("Routes - Adding users stock watchlist")
+    return db.updateWatchlist(req.params.username, req.params.watchlist)
+      .then(user => {
+        return db.getWatchlist(req.params.username)
+          .then(wl => {
+            console.log('USER watchlist', wl)
+            return res.json(wl)
+          })
+      })
+      .catch(err => {
+        console.log(err.message)
+        return res.status(500).send('500 error :(')
+      })
+  })
+
+
+// done
 router.get('/:username/:password', (req, res) => {
   return db.getUser(req.params.username, req.params.password)
     .then(user => {
-      console.log('USER', user)
       return res.json(user[0].username)
     })
     .catch(err => {
@@ -15,6 +48,7 @@ router.get('/:username/:password', (req, res) => {
     })
 })
 
+// done
 router.get('/', (req, res) => {
   console.log("Routes - Getting all users")
   return db.getUsers()
@@ -27,6 +61,7 @@ router.get('/', (req, res) => {
       return res.status(500).send('500 error :(')
     })
 })
+
 
 router.post('/:username/:password', (req, res) => {
   console.log("Routes - Adding user")
@@ -55,31 +90,7 @@ router.delete('/:username/:password', (req, res) => {
     })
 })
 
-router.get('/:user', (req, res) => {
-  console.log("Routes - Getting users stock watchlist")
-  return db.getWatchlist(req.params.user)
-    .then(user => {
-      console.log('USER watchlist', user)
-      return res.json(user)
-    })
-    .catch(err => {
-      console.log(err.message)
-      return res.status(500).send('500 error :(')
-    })
-})
 
-router.patch('/:user/:watchlist', (req, res) => {
-  console.log("Routes - Adding users stock watchlist")
-  return db.updateWatchlist(req.params.user, req.params.watchlist)
-    .then(user => {
-      console.log('USER watchlist updated:', user)
-      return res.json(user)
-    })
-    .catch(err => {
-      console.log(err.message)
-      return res.status(500).send('500 error :(')
-    })
-})
 
 
 module.exports = router

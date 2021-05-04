@@ -44,6 +44,7 @@ function Login (props) {
             type='text'
             name='username'
             id='username'
+            required
             onChange={(e) => handleChange(e)}
           />
         </label>
@@ -53,6 +54,7 @@ function Login (props) {
             type='text'
             name='password'
             id='password'
+            required
             onChange={(e) => handleChange(e)}
           />
         </label>
@@ -70,6 +72,7 @@ function Login (props) {
             type='text'
             name='username'
             id='username'
+            required
             onChange={(e) => handleChange(e)}
           />
         </label>
@@ -79,6 +82,7 @@ function Login (props) {
             type='text'
             name='password'
             id='password'
+            required
             onChange={(e) => handleChange(e)}
           />
         </label>
@@ -87,10 +91,32 @@ function Login (props) {
     )
   }
 
+  const handleLoginClick = () => {
+    setLoginClicked(!loginClicked) 
+    setRegClicked(false)
+  }
+
+  const handleRegClicked = () => {
+    setRegClicked(!regClicked)
+    setLoginClicked(false)
+  }
+
+  const handleLogOutClick = () => {
+    props.dispatch(setLoggedIn(false))
+  }
+
+  const logAndReg = () => {
+    return (
+      <>
+        { loginClicked ? renderLogin() : <button className='button-one' type='button' onClick={ () => handleLoginClick() }>Login</button> }
+        { regClicked ? renderRegister() : <button className='button-one' type='button' onClick={ () => handleRegClicked() }>Register</button> }
+      </>
+    )
+  }
+
   return (
     <div className="form-container">
-      { loginClicked ? renderLogin() : <button className='button-one' type='button' onClick={ () => setLoginClicked(!loginClicked) }>Login</button> }
-      { regClicked ? renderRegister() : <button className='button-one' type='button' onClick={ () => setRegClicked(!regClicked) }>Register</button> }
+      {props.loggedIn ? <button className='button-one' type='button' onClick={ () => handleLogOutClick() }> Log out </button> : logAndReg()}
     </div>
   )
 }

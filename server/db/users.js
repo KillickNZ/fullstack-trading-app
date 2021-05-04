@@ -13,7 +13,8 @@ const getUsers = (db = connection) => {
   )
 };
 
-const addUsers = (username, password, db = connection) => {
+const addUser = (username, password, db = connection) => {
+  
   return (
       db('users')
       .insert({
@@ -51,7 +52,8 @@ const deleteUser = (username, password,  db = connection) => {
   })
 }
 
-const getWatchlist = (username,db = connection) => {
+const getWatchlist = (username, db = connection) => {
+  console.log('hitting db')
   return (
       db('users')
       .select('watchlist')
@@ -104,7 +106,7 @@ const updateStocks = (id, title, paras, db = connection) => {
 module.exports = {
   getUser,
   getUsers,
-  addUsers,
+  addUser,
   deleteUser,
   getWatchlist,
   updateWatchlist
