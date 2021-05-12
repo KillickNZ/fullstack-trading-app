@@ -30,7 +30,7 @@ const addUser = (username, password, db = connection) => {
 const getUser = (username, password, db = connection) => {
   // console.log('DB')
   return db('users')
-    .select()
+    .first()
     .where({
       username: username,
       hash: password
