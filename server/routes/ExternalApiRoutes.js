@@ -53,10 +53,9 @@ router.get('/getMarket/:id', (req, res) => {
     )
 
     .then((response) => {
-      const s = new Date(response.body.prices[0][0]).toLocaleDateString(
+      new Date(response.body.prices[0][0]).toLocaleDateString(
         'en-US'
       )
-
       const newArr = {
         dates: [
           response.body.prices.map((ele) => {
@@ -74,4 +73,3 @@ router.get('/getMarket/:id', (req, res) => {
 })
 
 module.exports = router
-

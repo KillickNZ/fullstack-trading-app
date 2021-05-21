@@ -1,35 +1,32 @@
 import request from 'superagent'
 
-// import unirest from 'unirest'
-// const unirest = require('unirest')
-
 const baseURL = '/api/v1/ExternalApiRoutes'
 
 export const getAllCoins = () => {
-  return request.get('/api/v1/ExternalApiRoutes').then((response) => response.body)
+  return request.get(baseURL).then((response) => response.body)
 }
 
 export const get30CoinsCap = () => {
   return request
-    .get('/api/v1/ExternalApiRoutes/top30cap')
+    .get(baseURL + '/top30cap')
     .then((response) => response.body)
 }
 
 export const get30CoinsPrc = () => {
   return request
-    .get('/api/v1/ExternalApiRoutes/top30prc')
+    .get(baseURL + '/top30prc')
     .then((response) => response.body)
 }
 
 export const get30CoinsRat = () => {
   return request
-    .get('/api/v1/ExternalApiRoutes/top30rat')
+    .get(baseURL + '/top30rat')
     .then((response) => response.body)
 }
 
 export const getMarketData = (activeCoin) => {
   return request
-    .get('/api/v1/ExternalApiRoutes/getMarket/' + activeCoin)
+    .get(baseURL + '/getMarket/' + activeCoin)
     .then((response) => response.body)
 }
 
@@ -92,7 +89,7 @@ export function deleteUser (username, password) {
 
 export function getUserWatchlist (username, password) {
   console.log('hitting internal api', username, password)
-  console.log('/api/v1/dbRoutes/watchlist/' + username )
+  console.log('/api/v1/dbRoutes/watchlist/' + username)
   return (
     request
       .get('/api/v1/dbRoutes/watchlist/' + username)
@@ -105,7 +102,7 @@ export function getUserWatchlist (username, password) {
 }
 
 export function updateUserWatchlist (watchlist, username) {
-  console.log('hitting internal api', watchlist username)
+  console.log('hitting internal api', watchlist, username)
   console.log('/api/v1/dbRoutes/watchlist' + watchlist + '/' + username)
   return (
     request
@@ -117,13 +114,11 @@ export function updateUserWatchlist (watchlist, username) {
   )
 }
 
-
-
 // =========== Alpha Vantage calls ============= //
 
 export const getStockData = (stockSymbol) => {
   return request
-    .get('/api/v1/alphaVantageRoutes/getStockTimeSeries/'+stockSymbol)
+    .get('/api/v1/alphaVantageRoutes/getStockTimeSeries/' + stockSymbol)
     .then((response) => {
       return response.body
     })
@@ -131,7 +126,7 @@ export const getStockData = (stockSymbol) => {
 
 export const getStockOverview = (stockSymbol) => {
   return request
-    .get('/api/v1/alphaVantageRoutes/getStockOverView/'+stockSymbol)
+    .get('/api/v1/alphaVantageRoutes/getStockOverView/' + stockSymbol)
     .then((response) => {
       console.log(response.body)
       return response.body

@@ -110,9 +110,12 @@ body {
 
 .form-container {
   margin: 0px 30px;
+  display: flex;
 }
 
-
+.form {
+  background-color: var(--color-dark-two);
+}
 .container {
   width: 100%;
 }

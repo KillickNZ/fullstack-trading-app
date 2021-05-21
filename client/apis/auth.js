@@ -1,26 +1,46 @@
-import { register as authRegister, signIn as authLogin } from 'authenticare/client'
-import { baseApiUrl as baseUrl } from '../config'
+import axios from 'axios'
 
-const errorMessages = {
-  "USERNAME_UNAVAILABLE": "Sorry, that username is taken.",
-  "INVALID_CREDENTIALS": "Sorry, your username or password is incorrect.",
-}
+// import request from 'superagent'
+// import { register as authRegister, signIn as authLogin } from 'authenticare/client'
 
-export function register (creds) {
+// import { baseApiUrl as baseUrl } from '../config'
 
-    return {
-        request
-    }
+const url = '/api/v1/authRoutes'
 
-//   return authRegister(creds, { baseUrl })
-//     .catch(err => {
-//       throw errorMessages[err.response.body.errorType]
-//     })
+export function register (registerUsername, registerPassword) {
+  console.log('API reg creds', registerUsername, registerPassword)
+  axios({
+    method: 'POST',
+    data: {
+      username: registerUsername,
+      password: registerPassword
+    },
+    withCredentials: true,
+    url: url + '/register'
+  })
+    .then(
+      (result) => console.log(result)
+    )
+    .catch((err) => {
+      console.log(err)
+    })
 }
 
 export function login (creds) {
-  return authLogin(creds, { baseUrl })
-    .catch(err => {
-      throw errorMessages[err.response.body.errorType]
+  console.log('API login creds', creds)
+  axios({
+    method: 'GET',
+    data: {
+      username: creds.loginUserName,
+      password: creds.loginPassword
+    },
+    withCredentials: true,
+    url: url + '/login'
+  })
+    .then(
+      (result) => console.log(result)
+    )
+    .catch((err) => {
+      console.log(err)
     })
 }

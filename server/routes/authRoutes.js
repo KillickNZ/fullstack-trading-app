@@ -3,33 +3,30 @@ const router = express.Router()
 
 const db = require('../db/users')
 
-router.post('/login', (req, res) => {
-    console.log(req.body)
-    return 
-    
-    
-    // db.getUser(req.params.username, req.params.password)
-    // .then(user => {
-    //   return num
-    // })
-    // .catch(err => {
-    //   console.log(err.message)
-    //   return res.status(500).send('500 error :(')
-    // })
+router.get('/login', (req, res) => {
+  console.log('Hitting auth login', req.body)
+  return db
+    .getUser(req.body.username, req.body.password)
+    .then((user) => {
+      return user
+    })
+    .catch((err) => {
+      console.log(err.message)
+      return res.status(500).send('500 error :(')
+    })
 })
 
-router.post('/regester', (req, res) => {
-    console.log(req.body)
-    return 
-    
-    
-
+router.post('/register', (req, res) => {
+  console.log('Hitting auth register', req.body)
+  if (db.userExists(req.body.username)) {
+    return res.json('user exists')
+  } else {
+    return db.addUser(req.body.username, req.body.password)
+  }
 })
 
 router.get('/user', (req, res) => {
-    console.log(req.body)
-    return 
-    
+  return console.log(req.body)
 })
 
 module.exports = router
