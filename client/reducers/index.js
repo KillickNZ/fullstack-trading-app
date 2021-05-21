@@ -7,7 +7,6 @@ import activeUser from './user'
 import loggedIn from './loggedIn'
 import loadedApi from './loadedApi'
 
-
 export default combineReducers({
   category,
   activeCryptyo,
