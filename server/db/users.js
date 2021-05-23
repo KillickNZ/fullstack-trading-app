@@ -1,5 +1,5 @@
-const config = require('./knexfile').development
-const connection = require('./connection')(config)
+// const config = require('./knexfile').development
+const connection = require('./connection')
 
 // =========== USER - DB FUNCTIONS =========== //
 
@@ -12,6 +12,7 @@ const getUsers = (db = connection) => {
 }
 
 const addUser = (username, password, db = connection) => {
+  console.log('adding user')
   return db('users')
     .insert({
       username: username,
@@ -23,6 +24,7 @@ const addUser = (username, password, db = connection) => {
 }
 
 const getUser = (username, password, db = connection) => {
+  console.log('Get User', username)
   return db('users')
     .select()
     .where({
@@ -39,8 +41,10 @@ const userExists = (username, db = connection) => {
     .count('id as n')
     .where('username', username)
     .then((count) => {
-      console.log('user name already exists')
       return count[0].n > 0
+    })
+    .catch(err => {
+      console.log(err)
     })
 }
 

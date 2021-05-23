@@ -7,7 +7,7 @@ const cors = require('cors')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const cookieParser = require('cookie-parser')
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcrypt')
 const session = require('express-session')
 const bodyParser = require('body-parser')
 
@@ -22,15 +22,19 @@ server.use(express.json())
 server.use(express.static(path.join(__dirname, 'public')))
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: true }))
-server.use(cors({
+server.use(
+  cors({
     origin: 'http://localhost:300',
     credentials: true
-}))
-server.use(session({
+  })
+)
+server.use(
+  session({
     secret: 'secretcode',
     resave: true,
-    saveUninitialized: true
-}))
+    saveUninitialized: true,
+  })
+)
 
 server.use(cookieParser('secretcode'))
 

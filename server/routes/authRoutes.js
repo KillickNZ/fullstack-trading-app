@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt')
+
 const express = require('express')
 const router = express.Router()
 
@@ -18,11 +20,20 @@ router.get('/login', (req, res) => {
 
 router.post('/register', (req, res) => {
   console.log('Hitting auth register', req.body)
-  if (db.userExists(req.body.username)) {
-    return res.json('user exists')
-  } else {
-    return db.addUser(req.body.username, req.body.password)
-  }
+  db.userExists(req.body.username)
+    .then(async (bool) => {
+      const salt = await bcrypt.genSalt(10)
+      const hash = await bcrypt.hash(req.body.password, salt)
+      const data = { bool: bool, hash: hash }
+      return data
+    })
+    .then(({ bool, hash }) => {
+      console.log('in second then, bool, hash:', bool, hash)
+      return bool
+        ? res.json('user exists')
+        : db.addUser(req.body.username, hash)
+    })
+    .catch(err => console.log(err))
 })
 
 router.get('/user', (req, res) => {
