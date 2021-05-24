@@ -53,3 +53,15 @@ export function getUser () {
       console.log(err)
     })
 }
+
+export function logOutFunc () {
+  console.log('logged out api')
+  return axios({
+    method: 'GET',
+    url: url + '/logout'
+  })
+    .then((result) => console.log('logged out:', result)) // send data to redux state
+    .catch((err) => {
+      console.log(err)
+    })
+}

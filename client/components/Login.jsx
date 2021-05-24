@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { register, login as apiLogin } from '../apis/auth'
+import { register, login as apiLogin, logOutFunc } from '../apis/auth'
 import { connect } from 'react-redux'
 
 import { setUser, setLoggedIn } from '../actions/userActions'
@@ -19,12 +19,6 @@ function Login (props) {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault()
-    // return getUser(props.user.username, props.user.password)
-    //   .then((res) => {
-    //     {res && props.dispatch(setUser(res))}
-    //     {res ? props.dispatch(setLoggedIn('true')): props.dispatch(setLoggedIn('false'))}
-    //     return null
-    // })
     return apiLogin(loginUserName, loginPassword)
       .then((result) => {
         console.log('logged in:', result)
@@ -141,6 +135,9 @@ function Login (props) {
 
   const handleLogOutClick = () => {
     props.dispatch(setLoggedIn(false))
+    props.dispatch(setUser(null))
+    console.log('about to call lgo api')
+    return logOutFunc()
   }
 
   const logAndReg = () => {
@@ -180,8 +177,7 @@ function Login (props) {
           type="button"
           onClick={() => handleLogOutClick()}
         >
-          {' '}
-          Log out{' '}
+          Log out
         </button>
       ) : (
         logAndReg()

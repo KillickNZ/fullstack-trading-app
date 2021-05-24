@@ -41,4 +41,11 @@ router.get('/user', (req, res) => {
   return res.end(req.user)
 })
 
+router.get('/logout', (req, res) => {
+  console.log('starting logging out')
+  req.logOut()
+  res.redirect('/')
+  console.log('logout stuff done')
+})
+
 module.exports = router

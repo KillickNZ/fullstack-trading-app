@@ -5,6 +5,7 @@ import { setCurrentCryptyo } from '../actions/stockActions'
 
 const currencyCard = (props) => {
   const [select, setSelect] = useState('')
+  const [watchClicked, setWatchClicked] = useState(false)
 
   useEffect(() => {
     props.coin.id === props.activeCoin
@@ -33,6 +34,11 @@ const currencyCard = (props) => {
   // console.log('props.coin.id: ', props.coin.name);
   // console.log(props)
 
+  const watchListOnClick = (e) => {
+    e.preventDefault()
+    setWatchClicked(!watchClicked)
+  }
+
   return (
     // <div className={`currencyCard ${select}`} onClick={() => props.clickHandler(props.coin.id)}>
     <div
@@ -50,6 +56,9 @@ const currencyCard = (props) => {
           <p className="currencyCard--info">
             {props.coin.oneDayChange}% change
           </p>
+        </div>
+        <div>
+          <button className={'button ' + 'watchlist-' + watchClicked} onClick={(e) => watchListOnClick(e)}>watch</button>
         </div>
         <img className="currencyCard--img" src={props.coin.img} />
       </div>
