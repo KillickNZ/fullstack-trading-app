@@ -32,19 +32,6 @@ export const getMarketData = (activeCoin) => {
 
 // =========== DB route calls ============= //
 
-export function getUser (username, password) {
-  console.log('hitting internal api', username, password)
-  console.log('/api/v1/dbRoutes/' + username)
-  return (
-    request
-      .get('/api/v1/dbRoutes/' + username + '/' + password)
-      .then((res) => {
-        console.log('API res.body ', res.body)
-        return res.body
-      })
-  )
-}
-
 export function getUsers (username, password) {
   // console.log('hitting internal api', username, password)
   // console.log('/api/v1/dbRoutes/' + username + '/' + password)
@@ -59,33 +46,19 @@ export function getUsers (username, password) {
   // )
 }
 
-export function addUser (username, password) {
-  // console.log('hitting internal api', username, password)
-  // console.log('/api/v1/dbRoutes/' + username + '/' + password)
-  // return (
-  //   request
-  //     .get('/api/v1/dbRoutes/' + username + '/' + password)
-  //     // .send({username, password})
-  //     .then((res) => {
-  //       console.log('API res.body ', res.body)
-  //       return res.body
-  //     })
-  // )
-}
-
-export function deleteUser (username, password) {
-  console.log('hitting internal api', username, password)
-  console.log('/api/v1/dbRoutes/' + username + '/' + password)
-  return (
-    request
-      .get('/api/v1/dbRoutes/' + username + '/' + password)
-      // .send({username, password})
-      .then((res) => {
-        console.log('API res.body ', res.body)
-        return res.body
-      })
-  )
-}
+// export function deleteUser (username, password) {
+//   console.log('hitting internal api', username, password)
+//   console.log('/api/v1/dbRoutes/' + username + '/' + password)
+//   return (
+//     request
+//       .get('/api/v1/dbRoutes/' + username + '/' + password)
+//       // .send({username, password})
+//       .then((res) => {
+//         console.log('API res.body ', res.body)
+//         return res.body
+//       })
+//   )
+// }
 
 export function getUserWatchlist (username, password) {
   console.log('hitting internal api', username, password)
@@ -101,15 +74,19 @@ export function getUserWatchlist (username, password) {
   )
 }
 
-export function updateUserWatchlist (watchlist, username) {
-  console.log('hitting internal api', watchlist, username)
-  console.log('/api/v1/dbRoutes/watchlist' + watchlist + '/' + username)
+export function updateUserWatchlist (watchlist, user) {
+  console.log('hitting internal api', watchlist)
+  console.log('/api/v1/dbRoutes/watchlist/' + user.username)
   return (
     request
-      .get('/api/v1/dbRoutes/watchlist' + watchlist + '/' + username)
+      .post('/api/v1/dbRoutes/watchlist')
+      .send({ watchlist: watchlist, username: user.username })
       .then((res) => {
         console.log('API res.body ', res.body)
         return res.body
+      })
+      .catch((err) => {
+        throw err
       })
   )
 }

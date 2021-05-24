@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import { setCurrentCryptyo, addToWatchList, removeFromWatchList } from '../actions/stockActions'
+import { updateUserWatchlist } from '../apis/mainApi'
 
 const currencyCard = (props) => {
   const [select, setSelect] = useState('')
@@ -37,9 +38,11 @@ const currencyCard = (props) => {
   const watchListOnClick = (e) => {
     e.preventDefault()
     setWatchClicked(!watchClicked)
+    console.log('props.watchList', props.watchList)
     !watchClicked
       ? props.dispatch(addToWatchList(e.target.name))
       : props.dispatch(removeFromWatchList(e.target.name))
+    updateUserWatchlist(props.watchList, props.activeUser)
   }
 
   return (
@@ -61,7 +64,7 @@ const currencyCard = (props) => {
           </p>
         </div>
         <div>
-          <button className={'button ' + 'watchlist-' + watchClicked} onClick={(e) => watchListOnClick(e)} name={props.coin.code}>watch</button>
+          {props.loggedIn && <button className={'button ' + 'watchlist-' + watchClicked} onClick={(e) => watchListOnClick(e)} name={props.coin.code}>watch</button>}
         </div>
         <img className="currencyCard--img" src={props.coin.img} />
       </div>
@@ -72,7 +75,10 @@ const currencyCard = (props) => {
 const mapStateToProps = (globalState) => {
   return {
     category: globalState.category,
-    activeCryptyo: globalState.activeCryptyo
+    activeCryptyo: globalState.activeCryptyo,
+    watchList: globalState.watchList,
+    activeUser: globalState.activeUser,
+    loggedIn: globalState.loggedIn
   }
 }
 

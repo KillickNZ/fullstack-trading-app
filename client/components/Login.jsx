@@ -3,6 +3,8 @@ import { register, login as apiLogin, logOutFunc } from '../apis/auth'
 import { connect } from 'react-redux'
 
 import { setUser, setLoggedIn } from '../actions/userActions'
+import { addToWatchList } from '../actions/stockActions'
+import { getUserWatchlist } from '../apis/mainApi'
 
 function Login (props) {
   // ========= Auth States =========== //
@@ -25,6 +27,15 @@ function Login (props) {
         props.dispatch(setUser(result))
         props.dispatch(setLoggedIn(true))
         return null
+      })
+      .then(() => {
+        return getUserWatchlist(loginUserName)
+      })
+      .then((itemArr) => {
+        return itemArr.map((item) => {
+          return props.dispatch(addToWatchList(item))
+        }
+        )
       })
       .catch((err) => console.log(err))
   }

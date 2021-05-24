@@ -81,6 +81,7 @@ const getWatchlist = (username, db = connection) => {
 }
 
 const updateWatchlist = (username, watchlist, db = connection) => {
+  console.log('db func:', username, watchlist)
   return db('users')
     .where('username', username)
     .update({ watchlist: watchlist })
