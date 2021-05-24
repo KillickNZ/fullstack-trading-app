@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { setCurrentCryptyo, addToWatchList } from '../actions/stockActions'
+import { setCurrentCryptyo, addToWatchList, removeFromWatchList } from '../actions/stockActions'
 
 const currencyCard = (props) => {
   const [select, setSelect] = useState('')
@@ -37,7 +37,9 @@ const currencyCard = (props) => {
   const watchListOnClick = (e) => {
     e.preventDefault()
     setWatchClicked(!watchClicked)
-    props.dispatch(addToWatchList(e.target.name))
+    !watchClicked
+      ? props.dispatch(addToWatchList(e.target.name))
+      : props.dispatch(removeFromWatchList(e.target.name))
   }
 
   return (

@@ -40,3 +40,10 @@ export function addToWatchList (item) {
     item: item
   }
 }
+
+export function removeFromWatchList (item) {
+  return {
+    type: REMOVE_FROM_WATCHLIST,
+    item: item
+  }
+}
