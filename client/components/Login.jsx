@@ -25,9 +25,6 @@ function Login (props) {
     //     {res ? props.dispatch(setLoggedIn('true')): props.dispatch(setLoggedIn('false'))}
     //     return null
     // })
-
-    console.log('login submit firing', await apiLogin(loginUserName, loginPassword))
-
     return apiLogin(loginUserName, loginPassword)
       .then((result) => {
         console.log('logged in:', result)

@@ -8,7 +8,7 @@ function UserDisplay (props) {
     <div>
       <img />
       <h3>
-        {props.activeUser ? capitalize(props.activeUser) : 'User not logged in'}
+        {props.activeUser ? capitalize(props.activeUser.username) : 'User not logged in'}
       </h3>
 
       <ul>

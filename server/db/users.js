@@ -1,4 +1,3 @@
-// const config = require('./knexfile').development
 const connection = require('./connection')
 
 // =========== USER - DB FUNCTIONS =========== //
@@ -24,7 +23,6 @@ const addUser = (username, password, db = connection) => {
 }
 
 const getUser = (username, db = connection) => {
-  console.log('Get User:', username)
   return db('users')
     .select()
     .where({
@@ -36,7 +34,6 @@ const getUser = (username, db = connection) => {
 }
 
 const getUserByID = (id, db = connection) => {
-  console.log('Get User by id:', id)
   return db('users')
     .select()
     .where({
@@ -70,8 +67,6 @@ const deleteUser = (username, password, db = connection) => {
       console.log(err)
     })
 }
-
-// const registerUser = (username, password, db = connection) => {}
 
 // =========== Watchlist - DB FUNCTIONS =========== //
 

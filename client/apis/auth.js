@@ -4,7 +4,7 @@ const url = '/api/v1/authRoutes'
 
 export function register (registerUsername, registerPassword) {
   console.log('API reg creds', registerUsername, registerPassword)
-  axios({
+  return axios({
     method: 'POST',
     data: {
       username: registerUsername,
@@ -34,8 +34,7 @@ export function login (registerUsername, registerPassword) {
     .then(
       (result) => {
         console.log({ username: result.data.username, id: result.data.id })
-        // return { username: result.data.username, id: result.data.id }
-        return 10
+        return { username: result.data.username, id: result.data.id }
       }
     )
     .catch((err) => {
@@ -44,7 +43,7 @@ export function login (registerUsername, registerPassword) {
 }
 
 export function getUser () {
-  axios({
+  return axios({
     method: 'GET',
     withCredentials: true,
     url: url + '/user'
