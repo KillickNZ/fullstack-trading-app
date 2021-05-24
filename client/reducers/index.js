@@ -6,6 +6,7 @@ import activeStonks from './activeStonks'
 import activeUser from './user'
 import loggedIn from './loggedIn'
 import loadedApi from './loadedApi'
+import watchList from './watchlist'
 
 export default combineReducers({
   category,
@@ -13,5 +14,6 @@ export default combineReducers({
   activeStonks,
   activeUser,
   loggedIn,
-  loadedApi
+  loadedApi,
+  watchList
 })

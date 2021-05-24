@@ -2,6 +2,8 @@ export const SET_ACTIVE_CRYPTYO_ITEM = 'SET_ACTIVE_CRYPTYO_ITEM'
 export const SET_ACTIVE_TYPE = 'SET_ACTIVE_TYPE'
 export const SET_ACTIVE_STONKS_ITEM = 'SET_ACTIVE_STONKS_ITEM'
 export const SET_LOADED_API = 'SET_LOADED_API'
+export const ADD_TO_WATCHLIST = 'ADD_TO_WATCHLIST'
+export const REMOVE_FROM_WATCHLIST = 'REMOVE_FROM_WATCHLIST'
 
 export function setCurrentCryptyo (item) {
   return {
@@ -29,5 +31,12 @@ export function loadedApiData (bool) {
   return {
     type: SET_LOADED_API,
     bool: bool
+  }
+}
+
+export function addToWatchList (item) {
+  return {
+    type: ADD_TO_WATCHLIST,
+    item: item
   }
 }
