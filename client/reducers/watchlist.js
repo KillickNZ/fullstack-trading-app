@@ -7,7 +7,7 @@ const reducer = (state = initialState, action) => {
     case ADD_TO_WATCHLIST:
       return [...state, action.item]
     case REMOVE_FROM_WATCHLIST:
-      return state.filter(code => code === action.item)
+      return [...state.filter((item) => item !== action.item)]
     default:
       return state
   }

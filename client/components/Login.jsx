@@ -48,14 +48,14 @@ function Login (props) {
     register(registerUser, registerPassword)
   }
 
-  const handleRegChange = (e) => {
-    e.preventDefault()
-    const user = {
-      ...props.user,
-      [e.target.name]: e.target.value
-    }
-    return props.setUser(user)
-  }
+  // const handleRegChange = (e) => {
+  //   e.preventDefault()
+  //   const user = {
+  //     ...props.user,
+  //     [e.target.name]: e.target.value
+  //   }
+  //   return props.setUser(user)
+  // }
 
   const renderLogin = () => {
     console.log('rendereing login')
