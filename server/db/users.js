@@ -23,13 +23,24 @@ const addUser = (username, password, db = connection) => {
     })
 }
 
-const getUser = (username, password, db = connection) => {
-  console.log('Get User', username)
+const getUser = (username, db = connection) => {
+  console.log('Get User:', username)
   return db('users')
     .select()
     .where({
-      username: username,
-      hash: password
+      username: username
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
+const getUserByID = (id, db = connection) => {
+  console.log('Get User by id:', id)
+  return db('users')
+    .select()
+    .where({
+      id: id
     })
     .catch((err) => {
       console.log(err)
@@ -119,5 +130,6 @@ module.exports = {
   deleteUser,
   getWatchlist,
   updateWatchlist,
-  userExists
+  userExists,
+  getUserByID
 }

@@ -5,11 +5,11 @@ const server = express()
 // ===== Auth ===== //
 const cors = require('cors')
 const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy
+// const LocalStrategy = require('passport-local').Strategy
 const cookieParser = require('cookie-parser')
-const bcrypt = require('bcrypt')
+// const bcrypt = require('bcrypt')
 const session = require('express-session')
-const bodyParser = require('body-parser')
+// const bodyParser = require('body-parser')
 
 // ===== Routs ===== //
 const ExternalApiRoutes = require('./routes/ExternalApiRoutes')
@@ -20,8 +20,8 @@ const authRoutes = require('./routes/authRoutes')
 // ===== Middleware ===== //
 server.use(express.json())
 server.use(express.static(path.join(__dirname, 'public')))
-server.use(bodyParser.json())
-server.use(bodyParser.urlencoded({ extended: true }))
+// server.use(bodyParser.json())
+// server.use(bodyParser.urlencoded({ extended: true }))
 server.use(
   cors({
     origin: 'http://localhost:300',
@@ -32,11 +32,14 @@ server.use(
   session({
     secret: 'secretcode',
     resave: true,
-    saveUninitialized: true,
+    saveUninitialized: true
   })
 )
 
 server.use(cookieParser('secretcode'))
+server.use(passport.initialize())
+server.use(passport.session())
+require('./configs/passportConfig')(passport)
 
 // ===== Routes ===== //
 server.use('/api/v1/ExternalApiRoutes', ExternalApiRoutes)

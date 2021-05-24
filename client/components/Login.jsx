@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { getUser } from '../apis/mainApi'
 import { register, login as apiLogin } from '../apis/auth'
 import { connect } from 'react-redux'
 
-import { setUser, setLoggedIn } from '../actions/stockActions'
+import { setUser, setLoggedIn } from '../actions/userActions'
 
 function Login (props) {
   // ========= Auth States =========== //
@@ -18,7 +17,7 @@ function Login (props) {
 
   // ========= Login handlers ========== //
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault()
     // return getUser(props.user.username, props.user.password)
     //   .then((res) => {
@@ -27,21 +26,22 @@ function Login (props) {
     //     return null
     // })
 
-    console.log('login submit firing')
+    console.log('login submit firing', await apiLogin(loginUserName, loginPassword))
 
-    apiLogin(loginUserName, loginPassword)
+    return apiLogin(loginUserName, loginPassword)
+      .then((result) => {
+        console.log('logged in:', result)
+        props.dispatch(setUser(result))
+        props.dispatch(setLoggedIn(true))
+        return null
+      })
+      .catch((err) => console.log(err))
   }
 
   // ========= Reg handlers ========== //
 
   const handleRegSubmit = (e) => {
     e.preventDefault()
-    //  return getUser(props.user.username, props.user.password)
-    //  .then((res) => {
-    //    {res && props.dispatch(setUser(res))}
-    //    {res ? props.dispatch(setLoggedIn('true')): props.dispatch(setLoggedIn('false'))}
-    //    return null
-    //   })
     console.log('reg submit firing, sending:', registerUser, registerPassword)
     register(registerUser, registerPassword)
   }
@@ -50,7 +50,7 @@ function Login (props) {
     e.preventDefault()
     const user = {
       ...props.user,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     }
     return props.setUser(user)
   }

@@ -1,4 +1,4 @@
-import { SET_LOGGED_IN } from '../actions/stockActions'
+import { SET_LOGGED_IN } from '../actions/userActions'
 
 const initialState = null
 

@@ -1,21 +1,23 @@
 const bcrypt = require('bcrypt')
 
 const express = require('express')
+const passport = require('passport')
 const router = express.Router()
 
 const db = require('../db/users')
 
-router.get('/login', (req, res) => {
-  console.log('Hitting auth login', req.body)
-  return db
-    .getUser(req.body.username, req.body.password)
-    .then((user) => {
-      return user
-    })
-    .catch((err) => {
-      console.log(err.message)
-      return res.status(500).send('500 error :(')
-    })
+router.post('/login', (req, res, next) => {
+  console.log('hitting login route', req.body.username)
+  passport.authenticate('local', (err, user, info) => {
+    if (err) throw err
+    if (!user) return res.send('No user available')
+    else {
+      req.logIn(user, err => {
+        if (err) throw err
+        res.send(req.user)
+      })
+    }
+  })(req, res, next)
 })
 
 router.post('/register', (req, res) => {
@@ -28,7 +30,6 @@ router.post('/register', (req, res) => {
       return data
     })
     .then(({ bool, hash }) => {
-      console.log('in second then, bool, hash:', bool, hash)
       return bool
         ? res.json('user exists')
         : db.addUser(req.body.username, hash)
@@ -37,7 +38,7 @@ router.post('/register', (req, res) => {
 })
 
 router.get('/user', (req, res) => {
-  return console.log(req.body)
+  return res.end(req.user)
 })
 
 module.exports = router

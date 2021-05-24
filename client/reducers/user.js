@@ -1,4 +1,4 @@
-import { SET_USER } from '../actions/stockActions'
+import { SET_USER } from '../actions/userActions'
 
 const initialState = null
 

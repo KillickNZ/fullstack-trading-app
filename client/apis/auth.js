@@ -1,10 +1,5 @@
 import axios from 'axios'
 
-// import request from 'superagent'
-// import { register as authRegister, signIn as authLogin } from 'authenticare/client'
-
-// import { baseApiUrl as baseUrl } from '../config'
-
 const url = '/api/v1/authRoutes'
 
 export function register (registerUsername, registerPassword) {
@@ -26,20 +21,35 @@ export function register (registerUsername, registerPassword) {
     })
 }
 
-export function login (creds) {
-  console.log('API login creds', creds)
-  axios({
-    method: 'GET',
+export function login (registerUsername, registerPassword) {
+  return axios({
+    method: 'POST',
     data: {
-      username: creds.loginUserName,
-      password: creds.loginPassword
+      username: registerUsername,
+      password: registerPassword
     },
     withCredentials: true,
     url: url + '/login'
   })
     .then(
-      (result) => console.log(result)
+      (result) => {
+        console.log({ username: result.data.username, id: result.data.id })
+        // return { username: result.data.username, id: result.data.id }
+        return 10
+      }
     )
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
+export function getUser () {
+  axios({
+    method: 'GET',
+    withCredentials: true,
+    url: url + '/user'
+  })
+    .then((result) => console.log('getUser result:', result)) // send data to redux state
     .catch((err) => {
       console.log(err)
     })
