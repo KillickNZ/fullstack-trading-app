@@ -35,6 +35,10 @@ const currencyCard = (props) => {
   // console.log('props.coin.id: ', props.coin.name);
   // console.log(props)
 
+  useEffect(() => {
+    props.loggedIn && updateUserWatchlist(props.watchList, props.activeUser)
+  }, [props.watchList])
+
   const watchListOnClick = (e) => {
     e.preventDefault()
     setWatchClicked(!watchClicked)
@@ -42,7 +46,7 @@ const currencyCard = (props) => {
     !watchClicked
       ? props.dispatch(addToWatchList(e.target.name))
       : props.dispatch(removeFromWatchList(e.target.name))
-    updateUserWatchlist(props.watchList, props.activeUser)
+    // updateUserWatchlist(props.watchList, props.activeUser)
   }
 
   return (

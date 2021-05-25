@@ -3,7 +3,7 @@ import { register, login as apiLogin, logOutFunc } from '../apis/auth'
 import { connect } from 'react-redux'
 
 import { setUser, setLoggedIn } from '../actions/userActions'
-import { addToWatchList } from '../actions/stockActions'
+import { setWatchList } from '../actions/stockActions'
 import { getUserWatchlist } from '../apis/mainApi'
 
 function Login (props) {
@@ -23,21 +23,15 @@ function Login (props) {
     e.preventDefault()
     return apiLogin(loginUserName, loginPassword)
       .then((result) => {
-        console.log('logged in:', result)
         props.dispatch(setUser(result))
         props.dispatch(setLoggedIn(true))
         return null
       })
       .then(() => {
-        console.log('getting users watchlist')
         return getUserWatchlist(loginUserName)
       })
       .then((itemArr) => {
-        console.log('Item arr', itemArr.watchlist)
-        return itemArr.watchlist.split(',').map((item) => {
-          return props.dispatch(addToWatchList(item))
-        }
-        )
+        return props.dispatch(setWatchList(itemArr.watchlist.split(',')))
       })
       .catch((err) => console.log(err))
   }
@@ -46,7 +40,6 @@ function Login (props) {
 
   const handleRegSubmit = (e) => {
     e.preventDefault()
-    console.log('reg submit firing, sending:', registerUser, registerPassword)
     register(registerUser, registerPassword)
   }
 
@@ -60,7 +53,6 @@ function Login (props) {
   // }
 
   const renderLogin = () => {
-    console.log('rendereing login')
     return (
       <form
         onSubmit={(e) => {
@@ -149,7 +141,6 @@ function Login (props) {
   const handleLogOutClick = () => {
     props.dispatch(setLoggedIn(false))
     props.dispatch(setUser(null))
-    console.log('about to call lgo api')
     return logOutFunc()
   }
 

@@ -4,6 +4,7 @@ export const SET_ACTIVE_STONKS_ITEM = 'SET_ACTIVE_STONKS_ITEM'
 export const SET_LOADED_API = 'SET_LOADED_API'
 export const ADD_TO_WATCHLIST = 'ADD_TO_WATCHLIST'
 export const REMOVE_FROM_WATCHLIST = 'REMOVE_FROM_WATCHLIST'
+export const SET_WATCHLIST = 'SET_WATCHLIST'
 
 export function setCurrentCryptyo (item) {
   return {
@@ -44,6 +45,13 @@ export function addToWatchList (item) {
 export function removeFromWatchList (item) {
   return {
     type: REMOVE_FROM_WATCHLIST,
+    item: item
+  }
+}
+
+export function setWatchList (item) {
+  return {
+    type: SET_WATCHLIST,
     item: item
   }
 }
