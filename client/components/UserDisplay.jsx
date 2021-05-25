@@ -4,20 +4,13 @@ import { connect } from 'react-redux'
 import { capitalize } from '../utils'
 
 function UserDisplay (props) {
-  // useEffect(() => {
-  //   effect
-  //   return () => {
-  //     cleanup
-  //   }
-  // }, [input])
-
   return (
     <div>
       <h3>
         {props.activeUser ? capitalize(props.activeUser.username) : 'User not logged in'}
       </h3>
 
-      { (props.watchlist.length > 0) && <ul>
+      { (props.watchlist.length > 0 && props.activeUser) && <ul>
         {props.watchlist.map((item, i) => {
           return <li key={i}>{item}</li>
         })}

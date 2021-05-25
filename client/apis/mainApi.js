@@ -32,46 +32,17 @@ export const getMarketData = (activeCoin) => {
 
 // =========== DB route calls ============= //
 
-export function getUsers (username, password) {
-  // console.log('hitting internal api', username, password)
-  // console.log('/api/v1/dbRoutes/' + username + '/' + password)
-  // return (
-  //   request
-  //     .get('/api/v1/dbRoutes/' + username + '/' + password)
-  //     // .send({username, password})
-  //     .then((res) => {
-  //       console.log('API res.body ', res.body)
-  //       return res.body
-  //     })
-  // )
-}
-
-// export function deleteUser (username, password) {
-//   console.log('hitting internal api', username, password)
-//   console.log('/api/v1/dbRoutes/' + username + '/' + password)
-//   return (
-//     request
-//       .get('/api/v1/dbRoutes/' + username + '/' + password)
-//       // .send({username, password})
-//       .then((res) => {
-//         console.log('API res.body ', res.body)
-//         return res.body
-//       })
-//   )
-// }
-
-export function getUserWatchlist (username, password) {
-  console.log('hitting internal api', username, password)
-  console.log('/api/v1/dbRoutes/watchlist/' + username)
-  return (
-    request
-      .get('/api/v1/dbRoutes/watchlist/' + username)
-      // .send({username, password})
-      .then((res) => {
-        console.log('API res.body ', res.body)
-        return res.body
-      })
-  )
+export async function getUserWatchlist (username) {
+  console.log('hitting internal api get user', username)
+  console.log('/api/v1/dbRoutes/watch/' + username)
+  return await request.get('/api/v1/dbRoutes/watch/' + username)
+    .then((res) => {
+      console.log('API res.body ', res.body)
+      return res.body
+    })
+    .catch((err) => {
+      console.log('ERROR:', err)
+    })
 }
 
 export function updateUserWatchlist (watchlist, user) {

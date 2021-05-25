@@ -5,21 +5,21 @@ const router = express.Router()
 const db = require('../db/users')
 
 // done
-router.get('/watchlist/:username', (req, res) => {
+router.get('/watch/:username', (req, res, next) => {
   console.log('Routes - Getting users stock watchlist', req.params.username)
   return db
     .getWatchlist(req.params.username)
     .then((wl) => {
-      console.log('USER watchlist', wl)
-      return res.json(wl)
+      console.log('USER watchlist', wl[0])
+      return res.send(wl[0])
     })
     .catch((err) => {
       console.log(err.message)
       return res.status(500).send('500 error :(')
-    })
+    })(req, res, next)
 })
 
-router.post('/watchlist', (req, res) => {
+router.post('/watchlist', (req, res, next) => {
   console.log('updating watchlist:', req.body.username, req.body.watchlist)
   return db
     .updateWatchlist(req.body.username, req.body.watchlist)
@@ -33,11 +33,11 @@ router.post('/watchlist', (req, res) => {
     .catch((err) => {
       console.log(err.message)
       return res.status(500).send('500 error :(')
-    })
+    })(req, res, next)
 })
 
 // done
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   console.log('Routes - Getting all users')
   return db
     .getUsers()
@@ -48,7 +48,7 @@ router.get('/', (req, res) => {
     .catch((err) => {
       console.log(err.message)
       return res.status(500).send('500 error :(')
-    })
+    })(req, res, next)
 })
 
 module.exports = router

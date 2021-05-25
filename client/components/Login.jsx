@@ -29,9 +29,11 @@ function Login (props) {
         return null
       })
       .then(() => {
+        console.log('getting users watchlist')
         return getUserWatchlist(loginUserName)
       })
       .then((itemArr) => {
+        console.log('Item arr', itemArr)
         return itemArr.map((item) => {
           return props.dispatch(addToWatchList(item))
         }
