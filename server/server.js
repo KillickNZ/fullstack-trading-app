@@ -46,5 +46,6 @@ server.use('/api/v1/ExternalApiRoutes', ExternalApiRoutes)
 server.use('/api/v1/dbRoutes', dbRoutes)
 server.use('/api/v1/alphaVantageRoutes', avRoutes)
 server.use('/api/v1/authRoutes', authRoutes)
+server.use('/', authRoutes)
 
 module.exports = server

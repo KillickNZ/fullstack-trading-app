@@ -12,9 +12,12 @@ router.post('/login', (req, res, next) => {
     if (err) throw err
     if (!user) return res.send('No user available')
     else {
+      console.log('Login ', user)
       req.logIn(user, err => {
+        console.log('loginseption', req.user)
         if (err) throw err
         res.send(req.user)
+        // res.send('helllllooo')
       })
     }
   })(req, res, next)

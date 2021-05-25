@@ -1,11 +1,11 @@
 const express = require('express')
-const passport = require('passport')
+// const passport = require('passport')
 const router = express.Router()
 
 const db = require('../db/users')
 
 // done
-router.get('/watch/:username', (req, res, next) => {
+router.get('/watch/:username', require('connect-ensure-login').ensureLoggedIn(), (req, res) => {
   console.log('Routes - Getting users stock watchlist', req.params.username)
   return db
     .getWatchlist(req.params.username)
@@ -16,10 +16,10 @@ router.get('/watch/:username', (req, res, next) => {
     .catch((err) => {
       console.log(err.message)
       return res.status(500).send('500 error :(')
-    })(req, res, next)
+    })
 })
 
-router.post('/watchlist', (req, res, next) => {
+router.post('/watchlist', require('connect-ensure-login').ensureLoggedIn(), (req, res, next) => {
   console.log('updating watchlist:', req.body.username, req.body.watchlist)
   return db
     .updateWatchlist(req.body.username, req.body.watchlist)

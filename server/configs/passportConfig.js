@@ -25,5 +25,9 @@ module.exports = (passport) => {
   })
   passport.deserializeUser((id, cb) => {
     usersDB.getUserByID(id)
+      .then((user) => {
+        return cb(null, user)
+      })
+      .catch((err) => { throw err })
   })
 }

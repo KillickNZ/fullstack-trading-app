@@ -33,8 +33,8 @@ function Login (props) {
         return getUserWatchlist(loginUserName)
       })
       .then((itemArr) => {
-        console.log('Item arr', itemArr)
-        return itemArr.map((item) => {
+        console.log('Item arr', itemArr.watchlist)
+        return itemArr.watchlist.split(',').map((item) => {
           return props.dispatch(addToWatchList(item))
         }
         )
